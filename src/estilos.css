@@ -1,0 +1,56 @@
+/* Tablero de indicadores — Matías Nicolás Echeveste Cardozo */
+:root {
+  color-scheme: light dark;
+  --fondo: #f8fafc;
+  --superficie: #ffffff;
+  --texto: #0f172a;
+  --suave: #475569;
+  --borde: #e2e8f0;
+  --acento: #2563eb;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #0b1120;
+    --superficie: #111827;
+    --texto: #e5e7eb;
+    --suave: #9ca3af;
+    --borde: #1f2937;
+    --acento: #60a5fa;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fondo); color: var(--texto); }
+main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { margin: 0; font-size: clamp(1.4rem, 3vw, 2rem); }
+.sub { color: var(--suave); margin: 4px 0 24px; }
+.filtros { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: end; margin-bottom: 20px; }
+fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+legend { font-weight: 600; margin-bottom: 8px; }
+.chip { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--borde); border-left: 4px solid var(--color);
+  border-radius: 999px; padding: 4px 12px; background: var(--superficie); cursor: pointer; font-size: .9rem; }
+select, button { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--borde); background: var(--superficie); color: inherit; }
+.tarjetas { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin-bottom: 20px; }
+.tarjeta { background: var(--superficie); border: 1px solid var(--borde); border-top: 4px solid; border-radius: 12px; padding: 14px; }
+.tarjeta h2 { font-size: .95rem; margin: 0 0 8px; color: var(--suave); }
+.valor { font-size: 1.6rem; font-weight: 700; margin: 0; font-variant-numeric: tabular-nums; }
+.valor span { font-size: .85rem; font-weight: 400; color: var(--suave); }
+.detalle { margin: 4px 0 0; font-size: .9rem; color: var(--suave); }
+.aviso { background: #fef3c7; color: #78350f; padding: 8px 12px; border-radius: 8px; }
+.pestanas { display: flex; gap: 8px; margin-bottom: 8px; }
+.pestanas [aria-selected='true'] { background: var(--acento); color: #fff; border-color: var(--acento); }
+.grafico { margin: 0; background: var(--superficie); border: 1px solid var(--borde); border-radius: 12px; padding: 12px; }
+.grafico svg { width: 100%; height: auto; display: block; }
+.guia { stroke: var(--borde); }
+.eje { fill: var(--suave); font-size: 12px; }
+.linea { stroke-width: 2.5; stroke-linejoin: round; }
+.punto { stroke: var(--superficie); stroke-width: 1.5; cursor: pointer; }
+.punto:focus-visible { outline: none; stroke: var(--texto); stroke-width: 3; }
+.tooltip { min-height: 1.5em; text-align: center; color: var(--suave); font-variant-numeric: tabular-nums; }
+.vacio { color: var(--suave); }
+.tabla-contenedor { max-height: 420px; overflow: auto; border: 1px solid var(--borde); border-radius: 12px; }
+table { width: 100%; border-collapse: collapse; background: var(--superficie); }
+caption { text-align: left; padding: 8px 12px; color: var(--suave); }
+th, td { padding: 6px 12px; text-align: left; border-bottom: 1px solid var(--borde); }
+td:last-child { font-variant-numeric: tabular-nums; }
+footer { margin-top: 32px; color: var(--suave); font-size: .85rem; }
