@@ -121,7 +121,7 @@ export default function App() {
       </div>
 
       {vista === 'grafico' ? (
-        <GraficoLineas series={visibles} colores={COLORES} />
+        <GraficoLineas series={visibles} colores={COLORES} unidad={unidadesMezcladas ? "$ por unidad" : UNIDADES[visibles[0]?.unidad ?? ""]} />
       ) : (
         <div className="tabla-contenedor" tabIndex={0}>
           <table>

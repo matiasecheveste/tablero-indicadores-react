@@ -9,12 +9,13 @@ interface Props {
   series: Serie[]
   colores: Record<string, string>
   alto?: number
+  unidad?: string
 }
 
 const ANCHO = 760
-const MARGEN = { arriba: 16, derecha: 16, abajo: 32, izquierda: 64 }
+const MARGEN = { arriba: 16, derecha: 16, abajo: 32, izquierda: 72 }
 
-export function GraficoLineas({ series, colores, alto = 320 }: Props) {
+export function GraficoLineas({ series, colores, alto = 320, unidad = '$ por unidad' }: Props) {
   const idTitulo = useId()
   const [foco, setFoco] = useState<{ producto: string; indice: number } | null>(null)
 
@@ -29,7 +30,7 @@ export function GraficoLineas({ series, colores, alto = 320 }: Props) {
     const x = escala(Math.min(...meses), Math.max(...meses), MARGEN.izquierda, ANCHO - MARGEN.derecha)
     const y = escala(minV - holgura, maxV + holgura, alto - MARGEN.abajo, MARGEN.arriba)
     const anios = [...new Set(puntos.map((p) => p.periodo.slice(0, 4)))].sort()
-    return { x, y, marcasY: marcas(minV - holgura, maxV + holgura), anios }
+    return { x, y, marcasY: marcas(minV - holgura, maxV + holgura, 6), anios }
   }, [series, alto])
 
   if (!geometria) return <p className="vacio">Seleccione al menos un producto.</p>
@@ -48,6 +49,9 @@ export function GraficoLineas({ series, colores, alto = 320 }: Props) {
             </text>
           </g>
         ))}
+        <text className="eje" x={12} y={MARGEN.arriba} transform={`rotate(-90 12 ${MARGEN.arriba})`} textAnchor="end">
+          {unidad}
+        </text>
         {anios.map((a) => (
           <text key={a} className="eje" x={x(mesAbsoluto(`${a}-01`))} y={alto - 8} textAnchor="middle">
             {a}

@@ -27,8 +27,12 @@ h1 { margin: 0; font-size: clamp(1.4rem, 3vw, 2rem); }
 .filtros { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: end; margin-bottom: 20px; }
 fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 legend { font-weight: 600; margin-bottom: 8px; }
-.chip { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--borde); border-left: 4px solid var(--color);
-  border-radius: 999px; padding: 4px 12px; background: var(--superficie); cursor: pointer; font-size: .9rem; }
+.chip { display: inline-flex; gap: 8px; align-items: center; border: 1px solid var(--borde); border-radius: 999px;
+  padding: 4px 12px; background: var(--superficie); cursor: pointer; font-size: .9rem; }
+.chip::before { content: ''; order: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--color); }
+.chip input { order: -1; accent-color: var(--color); margin: 0; }
+.chip:has(input:checked) { border-color: var(--color); }
+.chip:has(input:focus-visible) { outline: 2px solid var(--acento); outline-offset: 2px; }
 select, button { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--borde); background: var(--superficie); color: inherit; }
 .tarjetas { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin-bottom: 20px; }
 .tarjeta { background: var(--superficie); border: 1px solid var(--borde); border-top: 4px solid; border-radius: 12px; padding: 14px; }
